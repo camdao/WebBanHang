@@ -1,7 +1,7 @@
 <?php
     
     function connectDatabase(){
-        include __DIR__ . '/resources/settings.php';
+        include './resources/settings.php';
         $host = $configDatabase['db_host'];
         $user = $configDatabase['db_user'];
         $pass = $configDatabase['db_pass'];
