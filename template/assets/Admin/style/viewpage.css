@@ -1,0 +1,14 @@
+/* Viewpage */
+
+#Display .viewpage{
+    width: 100%;
+    height: 100%;
+}
+    #Display .viewpage iframe{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    /* #Display{
+        overflow-y: auto;
+    } */

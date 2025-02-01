@@ -1,0 +1,157 @@
+
+@media (max-width: 1400px){
+	#Menu{
+		display: block;
+	}
+}
+
+
+@media (max-width: 768px){
+	html{
+		max-height: 400px;
+	}
+
+	body{
+		overflow: auto;
+	}
+
+
+	#Menu{
+		display: none;
+		height: 100vh;
+		overflow: auto;
+		top:0;
+		left: 0;
+		z-index: 1;
+		width: max-content;
+		background-color: #F3EFEF;
+	}
+
+	#Menu div{
+		margin-top: 15px;
+		width: max-content;
+	}
+
+
+
+	#Header img{
+		display:none;
+	}
+
+	#Header{
+		width: 1000px;
+	}
+
+	#Header .inner-container{
+		width: 60%;
+	}
+
+	#Header .inner{
+		width: 100%;
+		justify-content: space-between;
+	}
+
+
+	#Header .menu-bar{
+		display:block;
+		text-align: center;
+		cursor:pointer;
+		height: 55px;
+		width: 10%;
+		line-height: 55px;
+	}
+
+
+	#Display .order{
+		width: 100%;
+		padding: 0px;
+	}
+
+
+	#Display .order .head{
+		width: 1000px;
+	}
+
+	#Menu .close_menu{
+		display: block;
+		left: 255px;
+		top: -7px;
+	}
+
+	#Display .order .foot .pagination{
+		width: 100%;
+	}
+
+		#Display .order .foot{
+			width: 1000px;
+		}
+
+		
+
+		#Display .merchandise{
+		width: 100%;
+		}	
+
+		#Display .merchandise #main-content{
+			width: 100%;
+			padding: 0px;
+		}
+
+
+		#Display .order .form-donhang{
+			width: 1000px;
+			overflow: auto;
+		}
+
+
+		#Display .order .form-donhang .khachhang{
+			width: 100%;
+			padding: 15px;
+		}
+
+		#Display .order .main table{
+			width: 1000px;
+		}
+
+		#Display .order .sanpham{
+		width: 1000px;
+        padding: 0px;
+
+    }
+
+    #Menu div div{
+    	width: 100%;
+    }
+
+    #Display .viewpage iframe{
+    	width: 1000px;
+    	height: 100vh;
+    }
+
+    #Display .merchandise .button-group{
+    	width: 300px;
+    	display: flex;
+    	justify-content: space-between;
+    }
+
+    #Display .merchandise .edit-buttons1, .edit-buttons2{
+    	width: 100%;
+    }
+
+    #Display .merchandise .product-info span{
+    	height: 100%;
+    }
+
+
+	#ttadmin{
+		width: 1000px;
+	}
+
+	#Display .merchandise #prod-edit-display{
+		width: 1000px;
+	}
+
+
+
+}
+

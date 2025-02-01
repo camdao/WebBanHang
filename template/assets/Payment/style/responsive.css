@@ -1,0 +1,20 @@
+@media (max-width: 768px){
+	.cartoutter{
+		width: 200px;
+	}
+
+	#Form .sub-button{
+		width: 300px;
+	}
+
+	.cartinner .button{
+		width: 100%;
+		justify-content: space-between;
+	}
+}
+
+@media (max-width: 1328px){
+	.cartoutter{
+		width: 300px;
+	}
+}

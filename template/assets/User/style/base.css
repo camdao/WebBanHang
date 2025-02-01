@@ -1,0 +1,239 @@
+/* cấu hình chung để sử dụng vs:header,body,modal,footer */
+/* format */
+:root {
+    --xanh:#d2f4f4;
+    --xanhnhat: #B5E2EF;
+    --xanhdam: #90cdde;
+    --xam:#f5f5f5;
+    --text: #333333;
+    --icon: #333;
+    --border: #dfe3e8;
+    --white: #fff;
+    --smooth: all .3s ease-in;
+}
+
+*{
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: "Roboto", sans-serif;
+    font-family:'Libre Baskerville', serif;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+/* Responsive */
+/* .grid {
+    width: 1300px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__full-width {
+    width: 100%;
+} */
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -12px;
+    margin-right: -12px;
+}
+
+.grid_app {
+    padding-top: 10px;
+}
+
+.grid__column {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+}
+
+.grid__column2 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 25%;
+}
+
+.grid__column3 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 33.33333%;
+}
+
+.grid__column35 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 35%;
+}
+
+.grid__column5{
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 50%;
+}
+
+.grid__column65 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 65%;
+}
+
+
+.grid__column7 {
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 70%;
+}
+
+.btn {
+    min-width: 50px;
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes opacity {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+/* detail product */
+.detail_product {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    display: none;
+    z-index: 10;
+    overflow-y: auto;
+}
+
+.overlay {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.product__body {
+    margin: auto auto;
+    padding: 10px;
+    background-color: var(--xam);
+    z-index: 2;
+    border-radius: 5px;
+    width: 900px;
+    max-width: 100%;
+    position: relative;
+}
+
+/* detail order */
+.detail_order {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    display: none;
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.order_body {
+    margin: auto auto;
+    padding: 10px;
+    background-color: var(--xam);
+    z-index: 2;
+    width: 550px;
+    border-radius: 5px;
+    max-width: 100%;
+    position: relative;
+}
+
+.order_body .fa-xmark {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    cursor: pointer;
+    color: var(--icon);
+    font-size: 3rem;
+    transition: color 0.3s;
+    transition: transform 0.3s;
+}
+
+.tittle_order {
+    display: inline-block;
+    margin-top: 16px;
+    margin-left: 20px;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.detail-order-group {
+    list-style: none;
+    padding: 0;
+}
+
+.detail-order-content {
+    padding: 20px;
+}
+
+.detail-order-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+    font-size: 1.3rem;
+}
+
+.detail-order-item-left {
+    width: 40%;
+}
+
+.detail-order-item-right {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.detail-order-item i {
+    color: var(--xanhdam);
+    margin-right: 5px;
+    font-size: large;
+}
+
+.order_body .fa-xmark:hover{
+    color: rgb(243, 68, 68);
+    transform: rotate(90deg);
+}

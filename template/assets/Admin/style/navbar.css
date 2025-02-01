@@ -1,0 +1,323 @@
+:root{
+    --mau1: #D9F3F3;
+    --mau2: #DDB94D ;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    font-family:'Libre Baskerville', serif;
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0px;
+    position: relative;
+}
+
+
+
+
+
+ul,li{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+.show{
+   display:block;
+}
+.hide{
+   display:none;
+}
+
+
+
+/* Bắt đầu Header */
+
+#Header{
+    background-color: white;
+    width: 100%;
+    border-bottom:1px solid grey;
+    position: relative;
+}
+
+#Header img{
+    width: 100%;
+}
+
+#Header a{
+    display:block;
+    height: 10%;
+    width: 5%;
+    margin-left: 100px;
+}
+
+
+#Header .inner{
+    display:flex;
+    justify-content: space-between;
+}
+
+
+#Header .inner-container{
+    width: 50%;
+    display:flex;
+    justify-content: space-around;
+    margin-right: 15px;
+}
+
+
+#Header .item{
+    display:flex;
+    align-items: center;
+    width: 30%;
+    justify-content: center;
+}
+
+
+#Header .item p:hover{
+    opacity: 1;
+    border-bottom:2px solid var(--mau2);
+    cursor:pointer;
+}
+
+
+#Header .item i{
+    margin-right: 5px;
+    font-size: 20px;
+    text-align: center;
+    color: #4f4f4f;
+    font-weight: 900;
+    font-size: 16px;
+    opacity: 0.5;
+}
+
+#Header .item p{
+    font-size: 20px;
+    text-align: center;
+    color:#4f4f4f;
+    font-weight: 900;
+    font-size: 16px;
+    opacity: 0.4;
+}
+
+
+
+/* Bắt đầu thông tin Admin */
+
+
+.admin-info:hover{
+    border-bottom: 3px solid var(--mau2);
+}
+
+
+#Admin-info{
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+    width: max-content;
+    position: absolute;
+    right: 10px;
+    top: 60%;
+    z-index: 1;
+    background-color: white;
+    overflow: auto;
+
+}
+
+#Admin-info div{
+    text-align: center;
+    height: 29px;
+    line-height: 25px;
+    font-weight: bold;
+    border-bottom:3px solid black;
+    background-color: var(--mau1);
+    border-radius: 5px;
+    color:#4f4f4f;
+}
+
+
+
+#Admin-info li{
+    margin: 0px;
+    padding: 0px;
+
+}
+
+
+#Admin-info a i{
+    width: 100%;
+    text-align: center;
+    font-weight: 900;
+    
+}
+
+
+
+
+#Admin-info{
+    display:none;
+}
+
+#Header .admin-info:hover #Admin-info{ 
+    display:block;
+    color:#4f4f4f;
+    cursor: default;
+}
+
+ #Admin-info .button{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ #Admin-info .button .edit{
+    cursor:pointer;
+    width: 15%;
+    background-color: rgb(62, 199, 199);
+    border-radius: 5px;
+    height: 30px;
+    position: relative;
+}
+
+#Admin-info .button .edit i{
+    opacity: 1;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+}
+
+#Admin-info .button .edit:hover{
+    background-color: rgb(74, 250, 250);
+}
+
+
+ #Admin-info .button .logout{
+    margin: 0px;
+    position: relative;
+    cursor:pointer;
+    width: 15%;
+    background-color: red;
+    border-radius: 5px;
+    height: 30px;
+}
+
+ #Admin-info .button .logout i{
+    width: 100%;
+    font-weight: 900;
+    position: absolute;
+    top: 25%;
+    left:10%;
+    opacity: 1;
+}
+
+ #Admin-info .button .logout:hover{
+    background-color: rgb(254, 144, 144);
+}
+
+
+/* Kết thúc thông tin Admin */
+
+
+
+
+
+/* Kết thúc Header */
+
+
+/* Bắt đầu Main */
+#Main{
+    width: 100%;
+    height: 500px;
+    margin: 0px;
+    display:flex;
+    position: relative;
+}
+
+
+
+/* Bắt đầu Menu */
+
+#Menu{
+    width: 25%;
+    height: 91.5vh;
+    margin-top: 0px;
+    background-color: var(--mau1);
+    position: relative;
+}
+
+#Menu div{
+    height: 400px;
+}
+
+#Menu div div{
+    height: 20%;
+    margin-bottom: 20px;
+    font-weight: 900;
+    text-align: center;
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap : nowrap;
+    font-size: 20px;
+}
+
+ #Menu div div i{
+    margin-right: 10px;
+    color:#4f4f4f;
+}
+#Menu div div p{
+    margin-right: 10px;
+    color:#4f4f4f;
+}
+
+#Menu div div:hover{
+    border-right:5px solid var(--mau2); 
+}
+
+
+
+/* Kết thúc Menu */
+
+/* Bắt đầu Display */
+#Display{
+    width: 74.8%;
+    height: 87vh;
+    background-color:white;
+    position: relative;
+}
+
+
+/* Kết thúc display */
+/* Kết thúc Main */
+
+#Header .menu-bar{
+    display:none;
+}
+
+#Menu .close_menu{
+    width: 30px;
+    height: 30px;
+    /* list-heigth: 30px; */
+    position: fixed;
+    left: 300px;
+    top: 80px;
+    background-color: #f25050;
+    border-radius: 7px;
+    text-align: center;
+    cursor: pointer;
+    display:none;
+    padding: 3px 0px 3px 7px;
+}
+
+
+
+#Menu .close_menu:hover{
+    background-color: red;
+    border-right:none;
+}

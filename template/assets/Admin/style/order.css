@@ -1,0 +1,268 @@
+#Display .order{
+    padding: 5px;
+}
+
+#Display .order .head{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+    padding:10px;
+    background-color: #DEF2F2;
+    border-radius:5px ;
+}
+
+#Display .order .time>div{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+
+
+#Display .order .filterbtn{
+    cursor: pointer;
+    text-align: center;
+    margin-left: 35%;
+    width: max-content;
+    background-color: #DEF2F2;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 5px 8px;
+}	
+
+#Display .order .filterbtn:hover{
+	background-color: red;
+}
+
+#Display .order  .timkiem{
+	width: 20%;
+}
+
+
+
+
+#Display .order .main table{
+    width: 100%;
+    border: 1px solid black;
+    height: 500px;
+}
+
+#Display .order .main th, td{
+    width: max-content;
+    padding: 2px;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    
+}
+
+#Display .order .main tbody tr{
+    border-bottom: 1px solid #ccc;
+}
+
+#Display .order .main tbody .button div{
+    cursor: pointer;
+    text-align: center;
+    margin-left: 35%;
+    width: max-content;
+    background-color: #DEF2F2 ;
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 5px 8px;
+
+}
+
+#Display .order .main tbody .button div:hover{
+    background-color: #3982b8;
+}
+
+#Display .order .foot{
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: #DEF2F2;
+}
+
+#Display .order .foot .pagination{
+    text-align: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#Display .order .foot .pagination .item{
+    border: 3px solid #B4B2B2;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 5%;
+    margin: 0 10px;
+    background-color: #B4B2B2;
+}
+
+#Display .order .foot .pagination .item:hover{
+    background-color: grey;
+    border: 3px solid grey;
+}
+
+
+#Display .order .all {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Display .order .form-donhang {
+    background-color: white;
+    padding: 50px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow-y: auto; 
+}
+
+#Display .order h1 {
+    text-align: center;
+    color: #007acc; 
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#Display .order .khachhang {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border: 1px solid #007acc ;
+    padding:20px;
+}
+
+#Display .order .left, .right {
+    width: 48%; 
+}
+
+#Display .order .khachhang p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+#Display .order .khachhang p span {
+    font-weight: bold;
+    color: #007acc;
+}
+
+#Display .order .sanpham {
+    margin-top: 20px;
+    padding:20px;
+    background-color: #e0f7fa; 
+
+}
+
+#Display .order .sanpham table {
+    width: 100%;
+}
+
+#Display .order .sp-item th {
+    padding: 12px;
+
+}
+
+#Display .order .sp-item td {
+    padding: 12px;
+    text-align: center;
+}
+
+#Display .order .sp-item td img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}
+
+#Display .order .row-foot {
+    font-size: 18px;
+    padding: 12px;
+    font-weight: bold;
+    padding-top:20px;
+}
+
+#Display .order .row-head {
+    font-size: 18px;
+    padding: 12px;
+    font-weight: bold;
+    padding-top:20px;
+}
+
+#Display .order .row-foot > th{
+    color:#007acc ;
+}
+
+#Display .order .row-head > th{
+    color:#007acc ;
+}
+
+
+#Display .order .sp-item > tbody{
+    font-size: 14px;
+    color: black;
+}
+
+#Display .order .bonus {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#Display .order .bonus button {
+    padding: 10px 20px;
+    margin:10px;
+    font-size: 16px;
+    color: white;
+    background-color: #007acc;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#Display .order .bonus button:hover {
+    background-color: #005f8d;
+}
+
+#Display .order .all{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left:0;
+    display:none;
+}
+
+#Display .order .all .closeform{
+    border:1px solid red;
+    background-color: red;
+    border-radius: 5px;
+    cursor: pointer;
+    float:right;
+    text-align: center;
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+#Display .order .all .closeform:hover{
+    background-color: rgb(247, 115, 115);
+    border:1px solid rgb(247, 115, 115);
+    color:white;
+}
+
+
+#Display .order .loc{
+    text-align: center;
+}

@@ -10,6 +10,7 @@
         echo $member;
     }
 
-
-    
+    if ($requestUri === '/home' && $method === 'GET') {
+        include './template/home.php';
+    }
 ?>
