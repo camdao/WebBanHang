@@ -2,18 +2,38 @@
     include './src/global/config/mysqli.php';
 
     class UserRepository{
-        public function findMemberInfo($id) {
+        function findUserByUsername($userName) {
+            $conn = connectDatabase();
+        
+            $stmt = $conn->prepare("SELECT * FROM users WHERE userName = ? LIMIT 1");
+            $stmt->bind_param("s", $userName);
+            $stmt->execute();
+        
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+        
+            $stmt->close();
+            $conn->close();
+        
+            return $user;
+        }
+        public function findUserById($id) {
             $conn = connectDatabase();
 
-            $query = "SELECT * FROM users WHERE id = ?";
-            $result = $conn->query($query);
+            $stmt = $conn->prepare("SELECT * FROM users WHERE id = ? LIMIT 1");
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
 
-            $users = [];
-            while ($row = $result->fetch_assoc()) {
-                $users[] = $row;
-            }
-            return $users;
+            
+            $result = $stmt->get_result();
+            $user = $result->fetch_assoc();
+
+    
+            
+            $stmt->close(); 
             $conn->close();
+
+            return $user;
 
         }
     }
