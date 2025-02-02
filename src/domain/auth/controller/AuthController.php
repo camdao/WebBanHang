@@ -11,7 +11,22 @@
         }
 
         public function login($userName, $passWord){
-            $this -> authService->login($userName, $passWord);
+            $user = $this -> authService->login($userName, $passWord);
+            $_SESSION['user'] =  [
+                'id' => $user['id'],
+                'username' => $user['username']
+            ];        
+            echo json_encode(["id" => $user['id'],"username" => $user['username']]);
         }
+
+        public function signup($userName, $passWord){
+            $user =  $this -> authService->signup($userName, $passWord);
+            $_SESSION['user'] =  [
+                'id' => $user['id'],
+                'username' => $user['username']
+            ];  
+            echo json_encode(["id" => $user['id'],"username" => $user['username'],"password" => $user['password']]);
+        }
+        
     }
 ?>

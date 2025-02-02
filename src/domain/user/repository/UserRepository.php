@@ -36,5 +36,28 @@
             return $user;
 
         }
+        public function save($userName, $passWord) {
+            $conn = connectDatabase();
+
+            $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+            $stmt->bind_param("ss", $userName, $passWord);
+            $stmt->execute();
+
+            $userId = $conn->insert_id;
+            $user = null;
+            if ($stmt->affected_rows > 0) {
+                $user = [
+                    'id' => $userId,
+                    'username' => $userName,
+                    'password' => $passWord
+                ];
+            }
+
+            $stmt->close(); 
+            $conn->close();
+
+            return $user;
+
+        }
     }
 ?>
