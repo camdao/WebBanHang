@@ -1,9 +1,9 @@
 <?php
     include './src/global/config/mysqli.php';
-
     class UserRepository{
         function findUserByUsername($userName) {
-            $conn = connectDatabase();
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
         
             $stmt = $conn->prepare("SELECT * FROM users WHERE userName = ? LIMIT 1");
             $stmt->bind_param("s", $userName);
@@ -18,7 +18,8 @@
             return $user;
         }
         public function findUserById($id) {
-            $conn = connectDatabase();
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
 
             $stmt = $conn->prepare("SELECT * FROM users WHERE id = ? LIMIT 1");
             $stmt->bind_param("s", $id);
@@ -37,8 +38,9 @@
 
         }
         public function save($userName, $passWord) {
-            $conn = connectDatabase();
-
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
+            
             $stmt = $conn->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
             $stmt->bind_param("ss", $userName, $passWord);
             $stmt->execute();

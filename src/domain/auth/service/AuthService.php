@@ -26,7 +26,6 @@
             }
         
             $user = $this->userRepository->save($userName, $passWord);
-        
             if (!$user) {
                 throw new Exception("Failed to create user", 500);
             }

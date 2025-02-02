@@ -58,7 +58,6 @@
         </div>
         <!-- body -->
         <div class="container">
-            <!-- cố định 1 trang web 80% -->
             <div class="grid wide">
                 <div class="row grid_app">
                     <div class="grid__column">
@@ -67,17 +66,8 @@
                         </div>
                         <div class="home-product">
                             <div class="row" id="product-container">
-                                <!-- <div class="grid__column3" data-category="ring" data-id="1">
-                                    <a href="#" class="home-product-item">
-                                        <div class="product-img">   
-                                                <img src="assets/User/img/ring/1.png" alt="">
-                                        </div>
-                                        <div class="product-info">
-                                            <h3 class="product-name">Nhẫn</h3>
-                                            <span class="product-prices"> 1,300,000₫</span>
-                                        </div>
-                                    </a>
-                                </div> -->
+
+
                             </div>
                         </div>
                         <!-- pagination -->
@@ -102,12 +92,49 @@
         ?>
     </div>
     <script>
+        window.onload = function() {
+            let product = []
+
+            fetch('./product', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('error-message').innerText = data.error;
+                } else {
+                    const productContainer = document.getElementById('product-container');
+                    data.forEach(product => {  // Using 'data' here instead of 'Product'
+                        let productHTML =`
+                            <div class="grid__column3" data-category="${product.category}" data-id="${product.id}">
+                                <a href="#" class="home-product-item">
+                                    <div class="product-img">   
+                                        <img src="${product.images[0]}" alt="${product.name}">
+                                    </div>
+                                    <div class="product-info">
+                                        <h3 class="product-name">${product.name}</h3>
+                                        <span class="product-prices">${product.price === 0 ? 'Hàng tặng' : product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                        productContainer.innerHTML += productHTML;
+                    });
+                }
+            })
+            .catch(error => {
+            });
+        };
+
     </script>
     <!-- js -->
-    <script src="./template/assets/User/script/history.js"></script>
+    <!-- <script src="./template/assets/User/script/history.js"></script> -->
     <script src="./template/assets/User/script/main.js"></script>
-    <script src="./template/assets/User/script/Login_Signin.js"></script>
-    <script src="./template/assets/User/script/cart.js"></script>
+    <!-- <script src="./template/assets/User/script/Login_Signin.js"></script> -->
+    <!-- <script src="./template/assets/User/script/cart.js"></script> -->
     <!-- awesome font -->
     <script src="https://kit.fontawesome.com/097a4985d9.js" crossorigin="anonymous"></script>
 </body>

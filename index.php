@@ -2,7 +2,10 @@
     session_start();
     include './src/global/exception/ExceptionHandler.php';
     include './src/domain/auth/controller/AuthController.php';
+    include './src/domain/product/controller/ProductController.php';
+
     $authController = new AuthController();
+    $productController = new ProductController();
 
     $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $method = $_SERVER['REQUEST_METHOD'];
@@ -37,5 +40,9 @@
             return;
         }
         $authController->signup( $username, $password);
+    }
+    //Product
+    if ($requestUri === '/product' && $method === 'GET') {
+        $productController->productFindAll();
     }
 ?>
