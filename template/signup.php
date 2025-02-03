@@ -77,7 +77,7 @@
                 if (data.error) {
                     document.getElementById('error-message').innerText = data.error;
                 } else {
-                    window.location.href = '/';
+                    // window.location.href = '/';
                 }
             })
             .catch(error => {

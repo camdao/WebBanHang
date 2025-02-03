@@ -16,7 +16,7 @@
                 'id' => $user['id'],
                 'username' => $user['username']
             ];        
-            echo json_encode(["id" => $user['id'],"username" => $user['username']]);
+            ApiResponse::success("Login successful");
         }
 
         public function signup($userName, $passWord){
@@ -25,7 +25,7 @@
                 'id' => $user['id'],
                 'username' => $user['username']
             ];  
-            echo json_encode(["id" => $user['id'],"username" => $user['username'],"password" => $user['password']]);
+            ApiResponse::success("Signup successful");
         }
         
     }

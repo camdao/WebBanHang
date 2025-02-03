@@ -9,7 +9,7 @@
         }
         public function productFindAll(){
             $product = $this ->productService->productFindAll();
-            echo json_encode(["product" =>$product]);
+            ApiResponse::success(["product" =>$product]);
         }
     }
 ?>

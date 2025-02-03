@@ -1,10 +1,7 @@
 <?php
+    include'./src/global/response/ApiResponse.php';
     function handleException($exception) {
-        echo json_encode([
-            'message' => $exception->getMessage(),
-            'code' => $exception->getCode(),
-        ]);
+        ApiResponse::customApiResponse($exception->getCode(),$exception->getMessage());
     }
-
     set_exception_handler('handleException');
 ?>
