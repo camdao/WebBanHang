@@ -3,9 +3,12 @@
     include './src/global/exception/ExceptionHandler.php';
     include './src/domain/auth/controller/AuthController.php';
     include './src/domain/product/controller/ProductController.php';
+    include './src/domain/category/controller/CategoryController.php';
+
 
     $authController = new AuthController();
     $productController = new ProductController();
+    $categoryController = new CategoryController();
 
     $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $method = $_SERVER['REQUEST_METHOD'];
@@ -44,5 +47,9 @@
     //Product
     if ($requestUri === '/product' && $method === 'GET') {
         $productController->productFindAll();
+    }
+    //Category
+    if ($requestUri === '/category' && $method === 'GET') {
+        $categoryController->categoryFindAll();
     }
 ?>

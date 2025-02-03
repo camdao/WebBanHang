@@ -127,6 +127,20 @@
             })
             .catch(error => {
             });
+
+            let categories = []
+
+            fetch('./category', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+            })
+            .catch(error => {
+            });
         };
 
     </script>
