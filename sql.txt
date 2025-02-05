@@ -6,8 +6,8 @@ CREATE TABLE users (
     gender VARCHAR(255),
     status INT
 );
-//categories 
-CREATE TABLE categorys(
+
+CREATE TABLE categories(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255)
 );
@@ -15,19 +15,31 @@ CREATE TABLE categorys(
 CREATE TABLE products(
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
-    category VARCHAR(255),
+    thumbnail VARCHAR(255),
     price INT,
     description VARCHAR(255),
     category_id INT,
-    FOREIGN KEY (category_id) REFERENCES categorys(id)
+    FOREIGN KEY (category_id) REFERENCES categories(id)
 )
-
 
 CREATE TABLE images(
     id INT AUTO_INCREMENT PRIMARY KEY,
     path VARCHAR(255),
-    type VARCHAR(255),
     product_id INT,
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
+CREATE TABLE orders(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    address VARCHAR(255),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE orderDetail(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT,
+    order_id INT,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES products(id)
+);
