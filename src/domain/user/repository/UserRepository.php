@@ -61,5 +61,85 @@
             return $user;
 
         }
+        public function userUpdate($id,$address ,$gender ,$status){
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
+        
+            $sql = "UPDATE users 
+                    SET address = ?, gender = ?, status = ?
+                    WHERE id = ?";
+            
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ssii", $address, $gender, $status,$id);
+        
+            $stmt->execute();
+            $user = null;
+            if ($stmt->affected_rows > 0) {
+                $user = [
+                    'id' => $id,
+                    'address' => $address,
+                    'gender' => $gender,
+                    'status' => $status,
+                ];
+            }
+
+            $stmt->close(); 
+            $conn->close();
+
+            return $user;
+           
+        }
+        public function userDelete($id){
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
+        
+            $sql = "DELETE FROM users WHERE id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $id);
+        
+            $stmt->execute();
+            $user = null;
+            if ($stmt->affected_rows > 0) {
+                $user = [
+                    'id' => $id,
+                ];
+            }
+
+            $stmt->close(); 
+            $conn->close();
+
+            return $user;
+        }
+        public function userFindAll(){
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
+
+            $sql = "SELECT id, username ,password ,address ,gender ,status FROM users";
+
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $users = [];
+            while ($row = $result->fetch_assoc()) {
+                $userId = $row['id'];
+                
+                if (!isset($users[$userId])) {
+                    $users[$userId] = [
+                        'id' => $row['id'],
+                        'username' => $row['username'],
+                        'password' => $row['password'],
+                        'address' => $row['address'],
+                        'gender' => $row['gender'],
+                        'status' => $row['status'],
+                    ];
+                }
+            }
+
+            $stmt->close();
+            $conn->close();
+
+            return array_values($users); 
+        }
     }
 ?>

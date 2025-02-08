@@ -13,30 +13,28 @@
             return $this->productRepository ->productFindAll();
         }
         public function productFindOne($id){
-            $product = $this ->productRepository->productFindOne($id);
-            if($product==null){
-                throw new Exception("Product does not exist", 400);
-            }
-            return $product;
+            return $this ->productRepository->productFindOne($id);
         }
         public function productUpdate($id,$name,$thumbnail,$price,$description,$category_id){
-            $product = $this ->productRepository->productFindOne($id);
-            if($product==null){
-                throw new Exception("Product does not exist", 400);
-            }
+            $this->productExits($id);
             $product = $this ->productRepository->productUpdate($id,$name,$thumbnail,$price,$description,$category_id);
             return $product;
         }
         public function productDelete($id){
-            $product = $this ->productRepository->productFindOne($id);
-            if($product==null){
-                throw new Exception("Product does not exist", 400);
-            }
+            $this->productExits($id);
             $this ->productRepository->productDelete($id);
         }
 
         public function productCreate($name ,$thumbnail ,$price ,$description ,$category_id){
             $product = $this ->productRepository->productCreate($name ,$thumbnail ,$price ,$description ,$category_id);
+            return $product;
+        }
+
+        private function productExits($id){
+            $product = $this ->productRepository->productFindOne($id);
+            if($product==null){
+                throw new Exception("Product does not exist", 400);
+            }
             return $product;
         }
     }
