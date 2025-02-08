@@ -4,7 +4,7 @@
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
 
-            $sql = "SELECT id, name FROM categorys";
+            $sql = "SELECT id, name FROM categories";
             $stmt = $conn->prepare($sql);
             
             $stmt->execute();
@@ -23,7 +23,7 @@
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
             
-            $stmt = $conn->prepare("INSERT INTO categorys (username, password) VALUES (?)");
+            $stmt = $conn->prepare("INSERT INTO categories (username, password) VALUES (?)");
             $stmt->bind_param("s", $name);
             $stmt->execute();
 
@@ -46,7 +46,7 @@
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
             
-            $stmt = $conn->prepare("UPDATE categorys SET name =? WHERE id =?");
+            $stmt = $conn->prepare("UPDATE categories SET name =? WHERE id =?");
             $stmt->bind_param("si", $name, $id);
             $stmt->execute();
 
@@ -67,7 +67,7 @@
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
             
-            $stmt = $conn->prepare("DELETE FROM  categorys WHERE id =?");
+            $stmt = $conn->prepare("DELETE FROM  categories WHERE id =?");
             $stmt->bind_param("i", $id);
             $stmt->execute();
 
@@ -82,6 +82,25 @@
             $conn->close();
 
             return $category;
+        }
+        public function categoryFindOne($id){
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
+
+            $sql =  "SELECT * FROM categories WHERE id =?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("s", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $product = [];
+            while ($row = $result->fetch_assoc()) {
+                $product[] = $row;
+            }
+            $stmt->close();
+            $conn->close();
+            
+            return $product;
         }
     }
 ?>

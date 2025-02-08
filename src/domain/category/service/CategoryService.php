@@ -9,18 +9,25 @@
             $this->categoryRepository = CategoryRepositoryFactory::createCategoryRepository();
         }
         public function categoryFindAll(){
-            $categories = $this->categoryRepository->findAll();
-            return $categories;
+            return $this->categoryRepository->findAll();
         }
         public function categoryCreate($name){
-            $categories = $this->categoryRepository->save($name);
-
+            $category = $this->categoryRepository->save($name);
+            return $category;
         }
         public function categoryUpdate($id , $name){
-            $categories = $this->categoryRepository->categoryUpdate($id , $name);
+            $category = $this ->categoryRepository->categoryFindOne($id);
+            if($category==null){
+                throw new Exception("Category does not exist", 400);
+            }
+            return $this->categoryRepository->categoryUpdate($id , $name);
         }
         public function categoryDelete($id){
-            $categories = $this->categoryRepository->categoryDelete($id);
+            $category = $this ->categoryRepository->categoryFindOne($id);
+            if($category==null){
+                throw new Exception("Category does not exist", 400);
+            }
+            return $this->categoryRepository->categoryDelete($id);
         }
     }
 ?>
