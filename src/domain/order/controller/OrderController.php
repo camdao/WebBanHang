@@ -7,13 +7,23 @@
         {
             $this ->OrderService = OrderServiceFactory::createOrderService();
         }
-        public function createOrder($address){
-            $this ->OrderService->createOrder($address);
-        }
+        public function orderCreate($address){
+            $oder = $this ->OrderService->createOrder($address);
+            ApiResponse::success(["oder" =>$oder]);
 
-        public function deleteOrder($id){
+        }
+        public function orderDelete($id){
             $this ->OrderService->deleteOrder($id);
-        }
+            ApiResponse::success([""]);
 
+        }
+        public function oderFindAll(){
+            $order = $this ->OrderService->oderFindAll();
+            ApiResponse::success(["order" =>$order]);
+        }
+        public function oderUpdate($id,$address){
+            $this->OrderService->oderUpdate($id,$address);
+            ApiResponse::success([""]);
+        }
     }
 ?>

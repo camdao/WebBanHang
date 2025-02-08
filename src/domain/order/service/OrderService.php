@@ -6,15 +6,19 @@
         public function __construct()
         {
             $this ->oderRepository = OrderRepositoryFactory::createOrderRepository();
-
-
         }
         public function createOrder($address){
             $userId = UserUtil::getIdUser();
-            $this ->oderRepository->save($address, $userId);
+            return $this ->oderRepository->save($address, $userId);
         }
         public function deleteOrder($id){
-            $this ->oderRepository->delete($id);
+            return $this ->oderRepository->delete($id);
+        }
+        public function oderFindAll(){
+            return $this ->oderRepository->oderFindAll();
+        }
+        public function oderUpdate($id,$address){
+            return $this->oderRepository->oderUpdate($id,$address);
         }
     }
 ?>

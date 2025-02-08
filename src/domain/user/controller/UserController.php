@@ -13,16 +13,16 @@
             ApiResponse::success(["user" =>$user]);
         }
         public function userFindAll(){
-            $product = $this ->userService->userFindAll();
-            ApiResponse::success(["product" =>$product]);
+            $user = $this ->userService->userFindAll();
+            ApiResponse::success(["user" =>$user]);
         }
         public function userFindOne($id){
-            $product = $this ->userService->userFindOne($id);
-            ApiResponse::success(["product" =>$product]);
+            $user = $this ->userService->userFindOne($id);
+            ApiResponse::success(["user" =>$user]);
         }
         public function userUpdate($address ,$gender ,$status){
-            $product = $this->userService->userUpdate($address ,$gender ,$status);
-            ApiResponse::success(["product" =>$product]);
+            $user = $this->userService->userUpdate($address ,$gender ,$status);
+            ApiResponse::success(["user" =>$user]);
         }
         public function userDelete($id){
             $this->userService->userDelete($id);
