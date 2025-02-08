@@ -11,5 +11,21 @@
             $product = $this ->productService->productFindAll();
             ApiResponse::success(["product" =>$product]);
         }
+        public function productFindOne($id){
+            $product = $this ->productService->productFindOne($id);
+            ApiResponse::success(["product" =>$product]);
+        }
+        public function productCreate($name ,$thumbnail ,$price ,$description ,$category_id){
+            $product = $this->productService->productCreate($name ,$thumbnail ,$price ,$description ,$category_id);
+            ApiResponse::success(["product" =>$product]);
+        }
+        public function productDelete($id){
+            $this->productService->productDelete($id);
+            ApiResponse::success([""]);
+        }
+        public function productUpdate($id,$name ,$thumbnail ,$price ,$description ,$category_id){
+            $this->productService->productUpdate($id,$name ,$thumbnail ,$price ,$description ,$category_id);
+            ApiResponse::success([""]);
+        }
     }
 ?>
