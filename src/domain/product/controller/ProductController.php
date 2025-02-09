@@ -24,8 +24,8 @@
             ApiResponse::success([""]);
         }
         public function productUpdate($id,$name ,$thumbnail ,$price ,$description ,$category_id){
-            $this->productService->productUpdate($id,$name ,$thumbnail ,$price ,$description ,$category_id);
-            ApiResponse::success([""]);
+            $product = $this->productService->productUpdate($id,$name ,$thumbnail ,$price ,$description ,$category_id);
+            ApiResponse::success(["product" =>$product]);
         }
     }
 ?>
