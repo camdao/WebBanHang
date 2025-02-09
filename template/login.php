@@ -32,9 +32,7 @@
             </div>
             <button type="submit">Đăng Nhập</button>
             <p>Chưa Có Tài Khoản? <a href="javascript:void(0)" onclick="window.location.href='/signup'">Đăng Ký</a></p>
-            <?php if (isset($error_message)) { ?>
-                <div style="color: red;"><?= $error_message ?></div>
-            <?php } ?>
+            <div id="error-message" style="color: red;"></div>
         </form>
     </div>
     <script>
@@ -56,10 +54,10 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.error) {
-                    document.getElementById('error-message').innerText = data.error;
+                if (data.status==400) {
+                    document.getElementById('error-message').innerText = data.data;
                 } else {
-                    // window.location.href = '/';
+                    window.location.href = '/';
                 }
             })
             .catch(error => {

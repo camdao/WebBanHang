@@ -53,6 +53,7 @@
             </div>
             <button type="submit">Đăng Ký</button>
             <p>Đã có tài khoản? <a href="javascript:void(0)" onclick="window.location.href='/login'">Đăng nhập</a></p>
+            <div id="error-message" style="color: red;"></div>
         </form>
     </div>
     <script>
@@ -74,10 +75,10 @@
             })
             .then(response => response.json())
             .then(data => {
-                if (data.error) {
-                    document.getElementById('error-message').innerText = data.error;
+                if (data.status==400) {
+                    document.getElementById('error-message').innerText = data.data;
                 } else {
-                    // window.location.href = '/';
+                    window.location.href = '/';
                 }
             })
             .catch(error => {
