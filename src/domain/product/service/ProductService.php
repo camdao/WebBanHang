@@ -37,5 +37,9 @@
             }
             return $product;
         }
+        public function productFindByCategory($idCategory){
+            $product = $this->productRepository->productFindByCategory($idCategory);
+            return $product;
+        }
     }
 ?>

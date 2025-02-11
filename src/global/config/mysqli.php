@@ -1,7 +1,7 @@
 <?php
     class configMysqli{
         public function connectDatabase(){
-            include './resources/settings.php';
+            include './src/resources/settings.php';
             $host = $configDatabase['db_host'];
             $user = $configDatabase['db_user'];
             $pass = $configDatabase['db_pass'];

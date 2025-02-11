@@ -11,7 +11,7 @@
 
         public function findMemberInfo() {
             $userId = UserUtil::getIdUser();
-            return $this->userRepository->findUserByUsername($userId);
+            return $this->userRepository->findUserById($userId);
         }
         public function userFindAll(){
             return $this ->userRepository->userFindAll();

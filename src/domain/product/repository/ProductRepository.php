@@ -6,7 +6,7 @@
 
             $sql = "SELECT p.id, p.name,p.thumbnail, p.price, p.description, c.name AS category
             FROM products p
-            LEFT JOIN categorys c ON p.category_id = c.id";
+            LEFT JOIN categories c ON p.category_id = c.id";
 
             $stmt = $conn->prepare($sql);
             $stmt->execute();
@@ -132,6 +132,25 @@
             $conn->close();
 
             return $product;
+        }
+        public function productFindByCategory($idCategory){
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
+
+            $sql = "SELECT * FROM products WHERE category_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $idCategory);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            $products = [];
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+            $stmt->close();
+            $conn->close();
+            
+            return $products;
         }
     }
 ?>

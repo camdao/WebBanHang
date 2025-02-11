@@ -148,20 +148,6 @@ function dangnhap(event) {
 
 
 
-function dangxuat() {
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("currentUser");
-
-    // Ẩn giao diện người dùng đã đăng nhập
-    const navbarUser = document.querySelector('.navbar_user');
-    if (navbarUser) 
-        navbarUser.style.display = 'none';
-
-    // Hiển thị lại nút đăng nhập
-    const navbarAccount = document.querySelector('.navbar_account');
-    if (navbarAccount) 
-        navbarAccount.style.display = 'block';
-}
 
 function hienThiTaiKhoan(user) {
     // Ẩn nút đăng nhập
@@ -333,28 +319,6 @@ function changePassword() {
 document.addEventListener("DOMContentLoaded", hienThiThongTin);
 
 //================sự kiện click vào tài khoản của tôi
-function chuyenFormThongTin() {
-    const accountContainer = document.querySelector(".container_account");
-    if (accountContainer) {
-        accountContainer.style.display = "block"; 
-    }
-
-    const slider = document.querySelector('.slider');
-    if (slider) {
-        slider.style.display = "none";
-    }
-
-    const container = document.querySelector('.container');
-    if (container) {
-        container.style.display = "none";
-    }
-
-    const accountOrdered = document.querySelector(".order_history");
-    if (accountOrdered) {
-        accountOrdered.style.display = "none"; 
-    }
-
-}
 
 function chuyenFormLichSuDonHang() {
     const accountOrdered = document.querySelector(".order_history");

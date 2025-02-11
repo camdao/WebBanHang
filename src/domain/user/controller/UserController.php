@@ -9,9 +9,17 @@
             $this->userService = UserServiceFactory::createUserService();
         }
         public function memberInfo() {
-            $user =  $this->userService->findMemberInfo();
-            ApiResponse::success(["user" =>$user]);
+            $user = $this->userService->findMemberInfo();
+            $response = [
+                "id" => $user['id'],
+                "username" => $user['username'],
+                'address' => $user['address'],
+                'gender' => $user['gender']
+            ];
+        
+            ApiResponse::success(["user" => $response]);
         }
+        
         public function userFindAll(){
             $user = $this ->userService->userFindAll();
             ApiResponse::success(["user" =>$user]);

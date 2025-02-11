@@ -27,5 +27,9 @@
             $product = $this->productService->productUpdate($id,$name ,$thumbnail ,$price ,$description ,$category_id);
             ApiResponse::success(["product" =>$product]);
         }
+        public function productFindByCategory($idCategory){
+            $product = $this->productService->productFindByCategory($idCategory);
+            ApiResponse::success(["product" =>$product]);
+        }
     }
 ?>

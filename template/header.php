@@ -111,44 +111,17 @@
             <!-- <div class="fa-solid fa-xmark"></div> -->
             <ul class="navbar_link">
                 <li class="active">
-                    <a href="index.html" class="navbar_link-name">
+                    <a href="/" class="navbar_link-name">
                         Trang Chủ
                     </a>
-                </li>
-                <li>
-                    <a href="" class="navbar_link-name">
-                        Bộ sưu tầm
-                        <i class="fa-sharp fa-solid fa-chevron-down"></i>
-                    </a>
-                    <ul class="sub_menu">
-                        <li></li>
-                        <li></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="" class="navbar_link-name">
                         Sản Phẩm
                         <i class="fa-sharp fa-solid fa-chevron-down"></i>
                     </a>
-                    <ul class="sub_menu">
-                        <li class="active" style="display: none;">
-                            <a href="" data-category="all">Tất cả</a>
-                        </li>
-                        <li>
-                            <a href="" data-category="ring">Nhẫn</a>
-                        </li>
-                        <li>
-                            <a href="" data-category="watch">Đồng hồ</a>
-                        </li>
-                        <li>
-                            <a href="" data-category="bracelet">Vòng tay</a>
-                        </li>
-                        <li>
-                            <a href="" data-category="necklace">Vòng cổ</a>
-                        </li>
-                        <li>
-                            <a href="" data-category="earring">Khuyên tai</a>
-                        </li>
+                    <ul class="sub_menu" id="sub_menu">
+
                     </ul>
                 </li>
                 <li>
@@ -160,6 +133,37 @@
         </nav>
     </div>
 </header>
-</body>
+<script src="./template/assets/category.js"></script>
+<script src="./template/assets/user.js"></script>
+<script>
+    loadCategory()
+    infoUser()
+    let categoriesContainer = document.getElementById("sub_menu");
+    categoriesContainer.addEventListener("click", function (event) {
+    let target = event.target;
+    if (target.classList.contains("category-link")) {
+        event.preventDefault();
+        let categoryId = target.dataset.category;
+        filterProducts(categoryId);
+    }
+    });
 
+
+    let account = document.querySelector('.navbar_user');
+    account.addEventListener('click', () => {
+        let dropdownaccount = document.querySelector('.navbar_user-items');
+        if ( dropdownaccount.style.display === 'block' )
+            dropdownaccount.style.display = 'none';
+        else{
+            dropdownaccount.style.display = 'block';
+            let dropdownsearch= document.querySelector('.navbar_search-dropdown');
+            dropdownsearch.style.display = 'none';
+            let x = document.getElementById('giohang');
+            x.style.display = 'none';
+        }
+    })
+</script>
+<!-- awesome font -->
+<script src="https://kit.fontawesome.com/097a4985d9.js" crossorigin="anonymous"></script>
+</body>
 </html>                        

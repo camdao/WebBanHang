@@ -14,7 +14,7 @@
             $user = $this -> authService->login($userName, $passWord);
             $_SESSION['user'] =  [
                 'id' => $user['id'],
-                'username' => $user['username']
+                'username' => $user['username'],
             ];        
             ApiResponse::success("Login successful");
         }
@@ -27,6 +27,9 @@
             ];  
             ApiResponse::success("Signup successful");
         }
-        
+        public function logout(){
+            $_SESSION = [];            
+            ApiResponse::success("Logout successful");
+        }
     }
 ?>

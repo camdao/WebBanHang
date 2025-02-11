@@ -86,69 +86,78 @@
                 </div>
             </div>
         </div>
+        <!-- detail product -->
+        <div class="detail_product">
+            <div class="overlay">
+                <div class="product__body">
+                    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                    <div class="row">
+                        <div class="grid__column35">
+                            <div class="product_img">
+                                <img src="" alt="" class="main_img" id="product-main-img">
+                                <div class="small_img-group" id="product-small-imgs">
+                                    <div class="small_img-col">
+                                        <img src="" alt="" class="small_img">
+                                    </div>
+                                    <div class="small_img-col">
+                                        <img src="" alt="" class="small_img">
+                                    </div>
+                                    <div class="small_img-col">
+                                        <img src="" alt="" class="small_img">
+                                    </div>
+                                    <div class="small_img-col">
+                                        <img src="" alt="" class="small_img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid__column65">
+                            <div class="product_info">
+                                <div id="productId" style="display: none;"></div>
+                                <h1 id="product-name">Rose Gold Diamond Vine Pendant</h1>
+                                <h4 id="product-price">1,650,000₫</h4>
+                                <input type="number" value="1" id="product-quantity" min="1">
+                                <button id="add-to-cart" class="btn">Thêm vào giỏ</button>
+                                <h2>Mô tả</h2>
+                                <p id="product-description">Metal: 14K Gold</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- giỏ hàng -->
+        <div id="giohang">
+            <div class="showcart">
+                <h2>Giỏ hàng</h2>
+                <i id="close-cart" onclick="closeCart()" class="fa-solid fa-xmark"></i>
+                <table class="cart-item">
+                    <tr class="row-start">
+                        <th>Hình</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                        <th>Thành tiền</th>
+                        <th>Sửa</th>
+                    </tr>
+                    <tbody id="myCart">
+                    </tbody>
+                </table>
+                <button id="deleteAll" onclick="deleteAll()">Xóa tất cả</button>
+                <button id="thanhtoan" onclick="openPayment()">Tiến hành đặt hàng</button>
+            </div>
+        </div>
         <!-- footer -->
         <?php
             include './template/footer.php';
         ?>
     </div>
     <script>
-        window.onload = function() {
-            let product = []
-
-            fetch('./product', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    document.getElementById('error-message').innerText = data.error;
-                } else {
-                    const productContainer = document.getElementById('product-container');
-                    data.forEach(product => {  // Using 'data' here instead of 'Product'
-                        let productHTML =`
-                            <div class="grid__column3" data-category="${product.category}" data-id="${product.id}">
-                                <a href="#" class="home-product-item">
-                                    <div class="product-img">   
-                                        <img src="${product.images[0]}" alt="${product.name}">
-                                    </div>
-                                    <div class="product-info">
-                                        <h3 class="product-name">${product.name}</h3>
-                                        <span class="product-prices">${product.price === 0 ? 'Hàng tặng' : product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
-                                    </div>
-                                </a>
-                            </div>
-                        `;
-                        productContainer.innerHTML += productHTML;
-                    });
-                }
-            })
-            .catch(error => {
-            });
-
-            let categories = []
-
-            fetch('./category', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-            })
-            .catch(error => {
-            });
-        };
-
+      
     </script>
-    <!-- js -->
-    <!-- <script src="./template/assets/User/script/history.js"></script> -->
     <script src="./template/assets/User/script/main.js"></script>
-    <!-- <script src="./template/assets/User/script/Login_Signin.js"></script> -->
-    <!-- <script src="./template/assets/User/script/cart.js"></script> -->
+    <script src="./template/assets/User/script/cart.js"></script>
+    <script src="./template/assets/product.js"></script>
     <!-- awesome font -->
     <script src="https://kit.fontawesome.com/097a4985d9.js" crossorigin="anonymous"></script>
 </body>
