@@ -5,12 +5,16 @@
     include './src/domain/product/controller/ProductController.php';
     include './src/domain/category/controller/CategoryController.php';
     include './src/domain/user/controller/UserController.php';
+    include './src/domain/order/controller/OrderController.php';
+    include './src/domain/orderdetail/controller/OrderDetailController.php';
 
-
+    
     $authController = new AuthController();
     $productController = new ProductController();
     $categoryController = new CategoryController();
     $userController = new UserController();
+    $orderController = new OrderController();
+    $orderDetailController = new OrderDetailController();
 
     $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $method = $_SERVER['REQUEST_METHOD'];
@@ -26,6 +30,9 @@
     }
     if ($requestUri === '/user' && $method === 'GET') {
         include './template/userinfo.php';
+    }
+    if ($requestUri === '/cart' && $method === 'GET') {
+        include './template/cart.php';
     }
     // Auth
     if ($requestUri === '/info' && $method === 'GET') {
@@ -71,5 +78,19 @@
         $categoryController->categoryFindAll();
     }
 
-    
+    //Order
+    if ($requestUri === '/order' && $method === 'POST') {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $address = $data['address'] ?? '';
+        $orderController->orderCreate($address);
+    }
+
+    //Orderdetail
+    if ($requestUri === '/orderdetail' && $method === 'POST') {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $idOrder = $data['idOrder'] ?? '';
+        $product_ids = $data['product_ids'] ??'';
+        $orderDetailController->orderCreate($product_ids,$idOrder);
+    }
+
 ?>

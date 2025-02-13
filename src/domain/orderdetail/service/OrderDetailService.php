@@ -10,11 +10,11 @@
         }
         public function findAllByOrderId($orderId){
             $order = $this ->orderDetailRepository->findAllByOrderId($orderId);
-            ApiResponse::success(["order" =>$order]);
+            return $order;
         }
         public function orderCreate($product_id ,$order_id){
             $order = $this->orderDetailRepository->orderCreate($product_id ,$order_id);
-            ApiResponse::success(["order" =>$order]);
+            return $order;
         }
 
     }

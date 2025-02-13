@@ -27,16 +27,25 @@
         public function orderCreate($product_ids, $order_id){
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
-        
-            $values = array_map(fn($pid) => "($order_id, $pid)", $product_ids);
-            $valuesString = implode(", ", $values);
-        
-            $sql = "INSERT INTO orderDetail (order_id, product_id) VALUES $valuesString";
-            $conn->query($sql);
-        
-            $conn->close();
-        }
-        
+            
+            $placeholders = implode(',', array_fill(0, count($product_ids), '(?, ?)'));
 
+            $stmt = $conn->prepare("INSERT INTO orderDetail (order_id, product_id) VALUES $placeholders");
+
+            $params = [];
+            foreach ($product_ids as $pid) {
+                $params[] = $order_id;
+                $params[] = $pid;
+            }
+
+            $types = str_repeat('ii', count($product_ids));
+            $stmt->bind_param($types, ...$params);
+            
+            $stmt->execute();
+            
+            $stmt->close();
+            $conn->close();
+            return 'order success';
+        }
     }
 ?>

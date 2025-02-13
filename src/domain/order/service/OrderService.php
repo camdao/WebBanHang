@@ -1,6 +1,5 @@
 <?php
     include './src/domain/order/repository/OrderRepositoryFactory.php';
-    include './src/global/util/UserUtil.php';
     class OrderService{
         private $oderRepository;
         public function __construct()

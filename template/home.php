@@ -152,12 +152,16 @@
             include './template/footer.php';
         ?>
     </div>
-    <script>
-      
-    </script>
     <script src="./template/assets/User/script/main.js"></script>
-    <script src="./template/assets/User/script/cart.js"></script>
+    <script src="./template/assets/cart.js"></script>
     <script src="./template/assets/product.js"></script>
+    <script>
+    showcountsp();
+    document.getElementById('add-to-cart').addEventListener('click', function() {
+        themgiohang();
+    });
+    </script>
+
     <!-- awesome font -->
     <script src="https://kit.fontawesome.com/097a4985d9.js" crossorigin="anonymous"></script>
 </body>

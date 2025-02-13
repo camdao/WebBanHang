@@ -8,9 +8,8 @@
             $this ->OrderService = OrderServiceFactory::createOrderService();
         }
         public function orderCreate($address){
-            $oder = $this ->OrderService->createOrder($address);
-            ApiResponse::success(["oder" =>$oder]);
-
+            $order = $this ->OrderService->createOrder($address);
+            ApiResponse::success(["order" =>$order]);
         }
         public function orderDelete($id){
             $this ->OrderService->deleteOrder($id);

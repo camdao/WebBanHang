@@ -23,7 +23,7 @@
     <div class="grid wide">
         <nav class="navbar_one">
             <div class="navbar_logo">
-                <a class="navbar_logo-link" href="index.html">
+                <a class="navbar_logo-link" href="/">
                     <img src="template/assets/User/img/logo.png" alt="" class="logo">
                 </a>
             </div>
