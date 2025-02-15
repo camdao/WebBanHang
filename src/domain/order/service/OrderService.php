@@ -13,8 +13,8 @@
         public function deleteOrder($id){
             return $this ->oderRepository->delete($id);
         }
-        public function oderFindAll(){
-            return $this ->oderRepository->oderFindAll();
+        public function orderFindAll(){
+            return $this ->oderRepository->orderFindAll();
         }
         public function oderUpdate($id,$address){
             return $this->oderRepository->oderUpdate($id,$address);

@@ -23,7 +23,7 @@
                         'thumbnail' => $row['thumbnail'],
                         'price' => $row['price'],
                         'description' => $row['description'],
-                        'category' => $row['category'],
+                        'images' => []
                     ];
                 }
             }
@@ -37,7 +37,7 @@
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
 
-            $sql =  "SELECT p.* ,i.id as image_id,i.path 
+            $sql =  "SELECT p.id as product_id, p.name,p.thumbnail, p.price, p.description ,i.id as image_id,i.path 
                     FROM products p 
                     LEFT JOIN images i ON p.id = i.product_id
                     WHERE p.id =?";
@@ -46,14 +46,31 @@
             $stmt->execute();
             $result = $stmt->get_result();
 
-            $product = [];
-            while ($row = $result->fetch_assoc()) {
-                $product[] = $row;
+            $products = [];
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {                    
+                    if (!$products) {
+                        $products = [
+                            'id' => $row['product_id'],
+                            'name' => $row['name'],
+                            'thumbnail' => $row['thumbnail'],
+                            'price' => $row['price'],
+                            'description' => $row['description'],
+                            'image' => []
+                        ];
+                    }
+                    if ($row['image_id']) { 
+                        $products['image'][] = [
+                            'image_id' => $row['image_id'],
+                            'path' => $row['path'],
+                        ];
+                    }
+                }
             }
             $stmt->close();
             $conn->close();
             
-            return $product;
+            return $products;
         }
         public function productUpdate($id, $name, $thumbnail, $price, $description, $category_id){
             $mysql = new configMysqli();

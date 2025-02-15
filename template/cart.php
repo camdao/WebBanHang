@@ -31,13 +31,11 @@
                 <div class="inner2left">
                     <div  id = "Form">
                         <div style="color:black; opacity: 1">Thông tin Khách Hàng</div>
-                        <div><label for="name">Họ tên</label> <br><input type="text" id="name" name="name"></div>
-                        <div><label for="tele">Điện thoại</label><br> <input type="tel" id="tele" name="tele"></div>
-                        <div><label for="address"> Địa chỉ</label> <br><input type="text" id="address" name="address"></div>
+                        <div><label for="name">Họ tên</label> <br><input type="text" id="name" name="name" ></div>
+                        <div><label for="tele">Điện thoại</label><br> <input type="tel" id="tele" name="tele" ></div>
+                        <div><label for="address"> Địa chỉ</label> <br><input type="text" id="address" name="address" ></div>
                         <input type="submit" value="Đặt hàng" class="sub-button" onclick="thanhtoan()"> 
                     </div>
-                    
-                    
                     <div id="Contact">
     <div class="item">Số điện thoại: <span class="contact_phone"></span></div>
     <div class="item">Email: jewlrystore@gmail.com</div>

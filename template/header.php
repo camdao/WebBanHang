@@ -87,7 +87,7 @@
                             <a href="#" onclick="chuyenFormThongTin()">Tài khoản của tôi</a>
                         </li>
                         <li class="navbar_user-item">
-                            <a href="#" onclick="chuyenFormLichSuDonHang()">Đơn mua</a>
+                            <a href="#" onclick="renderOrderHistory()">Đơn mua</a>
                         </li>
                         <li class="navbar_user-item navbar_user-item-out">
                             <a href="" onclick="dangxuat()">Đăng xuất</a>

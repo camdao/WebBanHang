@@ -85,6 +85,11 @@
         $orderController->orderCreate($address);
     }
 
+    if ($requestUri === '/order' && $method === 'GET') {
+        $orderController->orderFindAll();
+    }
+
+
     //Orderdetail
     if ($requestUri === '/orderdetail' && $method === 'POST') {
         $data = json_decode(file_get_contents("php://input"), true);

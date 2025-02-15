@@ -18,7 +18,7 @@ function themgiohang(){
     .then((response) => response.json())
     .then((data) => {
         if (data.status == 200) {
-            let sp = data.data.product[0];
+            let sp = data.data.product;
             // Kiểm tra sản phẩm đã có trong giỏ hàng chưa
             var kt = false;
             if(giohang!=null){
@@ -162,9 +162,122 @@ function thanhtoan(){
             .then(response => response.json())
             .then(data => {
                 if (data.status==200) {
-                
+                    alert("Đặt hàng thành công");
+                    window.location.href = '/';
+                    localStorage.setItem('giohang', JSON.stringify(null));
                 }
             })
         }
     })
+}
+
+
+function renderOrderHistory() {
+    fetch('./order', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status==200) {
+            let orderHtml = '';
+            if (data.data.order.length === 0) {
+                orderHtml = `
+                    <div class="order-history-empty">
+                        <img src="./assets/User/img/download.png" alt="" class="empty-order-img">
+                        <p>Chưa có đơn hàng nào</p>
+                    </div>`;
+            } else {
+                data.data.order.forEach(order => {
+                    let productHtml = '';
+                    let totalAmount = 0;
+        
+                    order.products.forEach(product => {
+                        let totalPrice = product.price * product.soLuong;
+                        totalAmount += totalPrice;
+        
+                        // Tạo HTML cho từng sản phẩm trong đơn hàng
+                        productHtml += `
+                            <div class="order-history">
+                                <div class="order-history-left">
+                                    <img src="" alt="${product.name}">
+                                    <div class="order-history-info">
+                                        <h4>${product.name}</h4>
+                                        <p class="order-history-quantity">x</p>
+                                    </div>
+                                </div>
+                                <div class="order-history-right">
+                                    <div class="order-history-price">
+                                        <span class="order-history-current-price"></span>
+                                    </div>
+                                </div>
+                            </div>`;
+                    });
+        
+                    // Trạng thái đơn hàng
+                    // let statusText = order.status;
+                    // if(statusText == 0){
+                    //     statusText = "Chưa xử lý";
+                    // }else if(statusText == 1){
+                    //     statusText = "Đã dhuyệt";
+                    // }else if(statusText == 2){
+                    //     statusText = "Đã giao thành công";
+                    // }else{
+                    //     statusText = `Đã hủy vì ${order.lydo}`;
+                    // }            
+        
+                    // let orderDate = order.ngaydat;
+                    // let deliveryDate = order.ngayduyet !== 0 ? order.ngayduyet : "Chưa duyệt";
+        
+                    // Tạo HTML cho đơn hàng
+                    orderHtml += `
+                        <div class="order-history-group">
+                            ${productHtml}
+                            <div class="order-history-control">
+                                <div class="order-history-status">
+                                    <span class="order-history-status-sp ">$</span>
+                                    <button id="order-history-detail" onclick="showOrderDetail('${order.id}')">
+                                        <i class="fa-regular fa-eye"></i> Xem chi tiết
+                                    </button>
+                                </div>
+                                <div class="order-history-total">
+                                    <span class="order-history-total-desc">Tổng tiền: </span>
+                                    <span class="order-history-toltal-price"></span>
+                                </div>
+                            </div>
+                        </div>`;
+                });
+            }
+        
+            // Cập nhật HTML vào phần hiển thị lịch sử đơn hàng
+            const orderHistorySection = document.querySelector(".order_history .main_account");
+            if (orderHistorySection) {
+                orderHistorySection.innerHTML = `
+                    <div class="tittle-main_account">
+                        <h3>Quản lý đơn hàng của bạn</h3>
+                        <p>Xem chi tiết, trạng thái của những đơn hàng đã đặt</p>
+                    </div>
+                    ${orderHtml}`;
+            }
+        
+            // Hiển thị phần lịch sử đơn hàng
+            const orderHistoryDiv = document.querySelector(".order_history");
+            const container = document.querySelector(".container");
+            const slider = document.querySelector(".slider");
+
+            if (orderHistoryDiv) {
+                orderHistoryDiv.style.display = "block"; // Hiển thị phần lịch sử đơn hàng
+                container.style.display="none";
+                slider.style.display="none";
+            }
+        
+            console.log(localStorage.getItem('donhang'));
+        }
+    })
+    .catch(error => {
+    });
+
+    
 }

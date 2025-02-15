@@ -41,7 +41,7 @@ function filterProducts(categoryId) {
                     <div class="grid__column3" data-category="${product.category}" data-id="${product.id}">
                         <a href="javascript:void(0)" class="home-product-item">
                             <div class="product-img">   
-                                <img src="image/${product.thumbnail}" alt="${product.name}">
+                                <img src="${product.thumbnail}" alt="${product.name}">
                             </div>
                             <div class="product-info">
                                 <h3 class="product-name">${product.name}</h3>

@@ -31,7 +31,7 @@
             include './template/header.php';
         ?>
         <!-- slider -->
-        <div class="slider">
+        <div class="slider" id="slider">
             <div class="list">
                 <div class="item">
                     <img src="template/assets/User/img/4.jpg" alt="">
@@ -57,7 +57,7 @@
             </ul>
         </div>
         <!-- body -->
-        <div class="container">
+        <div class="container" id="container">
             <div class="grid wide">
                 <div class="row grid_app">
                     <div class="grid__column">
@@ -145,6 +145,75 @@
                 </table>
                 <button id="deleteAll" onclick="deleteAll()">Xóa tất cả</button>
                 <button id="thanhtoan" onclick="openPayment()">Tiến hành đặt hàng</button>
+            </div>
+        </div>
+        <!-- order history -->
+        <div class="order_history" style="display: none;">
+            <div class="grid wide1">
+                <div class="row account-app">
+                    <div class="grid__column">
+                        <div class="main_account">
+                            <div class="tittle-main_account">
+                                <h3>Quản lý đơn hàng của bạn</h3>
+                                <p>Xem chi tiết,trạng thái của những đơn hàng đã đặt</p>
+                            </div>
+                            <div class="order-history-group">
+                                <div class="order-history">
+                                    <div class="order-history-left">
+                                        <img src="./template/assets/User/img/4.jpg" alt="">
+                                        <div class="order-history-info">
+                                            <h4>Đồng hồ(hàng tặng)</h4>
+                                            <p class="order-history-quantity">x1</p>
+                                        </div>
+                                    </div>
+                                    <div class="order-history-right">
+                                        <div class="order-history-price">
+                                            <span class="order-history-current-price">200.000&nbsp;₫</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-history">
+                                    <div class="order-history-left">
+                                        <img src="./template/assets/User/img/4.jpg" alt="">
+                                        <div class="order-history-info">
+                                            <h4>Đồng hồ(hàng tặng)</h4>
+                                            <p class="order-history-quantity">x1</p>
+                                        </div>
+                                    </div>
+                                    <div class="order-history-right">
+                                        <div class="order-history-price">
+                                            <span class="order-history-current-price">200.000&nbsp;₫</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-history">
+                                    <div class="order-history-left">
+                                        <img src="./template/assets/User/img/4.jpg" alt="">
+                                        <div class="order-history-info">
+                                            <h4>Đồng hồ(hàng tặng)</h4>
+                                            <p class="order-history-quantity">x1</p>
+                                        </div>
+                                    </div>
+                                    <div class="order-history-right">
+                                        <div class="order-history-price">
+                                            <span class="order-history-current-price">200.000&nbsp;₫</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="order-history-control">
+                                    <div class="order-history-status">
+                                        <span class="order-history-status-sp no-complete">Đang xử lý</span>
+                                        <button id="order-history-detail" onclick="showOrderDetail('${order.id}')"><i class="fa-regular fa-eye"></i> Xem chi tiết</button>
+                                    </div>
+                                    <div class="order-history-total">
+                                        <span class="order-history-total-desc">Tổng tiền: </span>
+                                        <span class="order-history-toltal-price">440.000&nbsp;₫</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- footer -->

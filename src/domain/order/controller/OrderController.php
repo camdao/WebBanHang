@@ -16,9 +16,9 @@
             ApiResponse::success([""]);
 
         }
-        public function oderFindAll(){
-            $order = $this ->OrderService->oderFindAll();
-            ApiResponse::success(["order" =>$order]);
+        public function orderFindAll(){
+            $order = $this ->OrderService->orderFindAll();
+            ApiResponse::success(["order" =>array_values($order)]);
         }
         public function oderUpdate($id,$address){
             $this->OrderService->oderUpdate($id,$address);
