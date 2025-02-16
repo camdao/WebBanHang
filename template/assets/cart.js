@@ -195,17 +195,16 @@ function renderOrderHistory() {
                     let totalAmount = 0;
         
                     order.products.forEach(product => {
-                        let totalPrice = product.price * product.soLuong;
+                        let totalPrice = product.price;
                         totalAmount += totalPrice;
         
                         // Tạo HTML cho từng sản phẩm trong đơn hàng
                         productHtml += `
                             <div class="order-history">
                                 <div class="order-history-left">
-                                    <img src="" alt="${product.name}">
+                                    <img src="${product.thumbnail}" alt="${product.name}">
                                     <div class="order-history-info">
                                         <h4>${product.name}</h4>
-                                        <p class="order-history-quantity">x</p>
                                     </div>
                                 </div>
                                 <div class="order-history-right">
@@ -217,19 +216,16 @@ function renderOrderHistory() {
                     });
         
                     // Trạng thái đơn hàng
-                    // let statusText = order.status;
-                    // if(statusText == 0){
-                    //     statusText = "Chưa xử lý";
-                    // }else if(statusText == 1){
-                    //     statusText = "Đã dhuyệt";
-                    // }else if(statusText == 2){
-                    //     statusText = "Đã giao thành công";
-                    // }else{
-                    //     statusText = `Đã hủy vì ${order.lydo}`;
-                    // }            
-        
-                    // let orderDate = order.ngaydat;
-                    // let deliveryDate = order.ngayduyet !== 0 ? order.ngayduyet : "Chưa duyệt";
+                    let statusText = order.status;
+                    if(statusText == 0){
+                        statusText = "Chưa xử lý";
+                    }else if(statusText == 1){
+                        statusText = "Đã dhuyệt";
+                    }else if(statusText == 2){
+                        statusText = "Đã giao thành công";
+                    }else{
+                        statusText = `Đã hủy vì ${order.lydo}`;
+                    }            
         
                     // Tạo HTML cho đơn hàng
                     orderHtml += `
@@ -237,13 +233,13 @@ function renderOrderHistory() {
                             ${productHtml}
                             <div class="order-history-control">
                                 <div class="order-history-status">
-                                    <span class="order-history-status-sp ">$</span>
-                                    <button id="order-history-detail" onclick="showOrderDetail('${order.id}')">
+                                    <span class="order-history-status-sp ${statusText === 'Đã xử lý' ? 'complete' : 'no-complete'}">${statusText}</span>
+                                    <button id="order-history-detail" onclick="showOrderDetail('${order.order_id}')">
                                         <i class="fa-regular fa-eye"></i> Xem chi tiết
                                     </button>
                                 </div>
                                 <div class="order-history-total">
-                                    <span class="order-history-total-desc">Tổng tiền: </span>
+                                    <span class="order-history-total-desc">Tổng tiền:${totalAmount} </span>
                                     <span class="order-history-toltal-price"></span>
                                 </div>
                             </div>
@@ -280,4 +276,41 @@ function renderOrderHistory() {
     });
 
     
+}
+
+function showOrderDetail(id){
+    fetch('./orderid', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id: id
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status==200) {
+            const detailOrderItems = document.querySelectorAll(".detail-order-item-right");
+            detailOrderItems[0].textContent = "27/11/2024";           
+            detailOrderItems[1].textContent = "Thanh toán khi nhận hàng";
+            detailOrderItems[2].textContent = data.data.order.address;
+            detailOrderItems[3].textContent = data.data.order.recipientname;  
+            detailOrderItems[4].textContent = data.data.order.phone; 
+
+            const modal = document.querySelector(".detail_order");
+            if (modal) {
+                modal.style.display = "block";
+            }
+        }
+    })
+    .catch(error => {
+    });
+}
+
+function closeProductDetail(){
+    const modal = document.querySelector(".detail_order");
+    if (modal) {
+        modal.style.display = "none";
+    }
 }

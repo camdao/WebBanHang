@@ -16,6 +16,10 @@
             ApiResponse::success([""]);
 
         }
+        public function orderFindId($id){
+            $order = $this ->OrderService->orderFindId($id);
+            ApiResponse::success(["order" =>$order]);
+        }
         public function orderFindAll(){
             $order = $this ->OrderService->orderFindAll();
             ApiResponse::success(["order" =>array_values($order)]);

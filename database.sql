@@ -34,6 +34,7 @@ CREATE TABLE orders(
     recipientname VARCHAR(255),
     address VARCHAR(255),
     phone INT,
+    status INT,
     user_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

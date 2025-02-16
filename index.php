@@ -89,6 +89,12 @@
         $orderController->orderFindAll();
     }
 
+    if ($requestUri === '/orderid' && $method === 'POST') {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $id = $data['id'] ?? '';
+        $orderController->orderFindId($id);
+    }
+
 
     //Orderdetail
     if ($requestUri === '/orderdetail' && $method === 'POST') {

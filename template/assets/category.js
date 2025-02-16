@@ -52,6 +52,19 @@ function filterProducts(categoryId) {
                 `;
                 productContainer.innerHTML += productHTML;
             });
+
+            document.querySelectorAll('.home-product-item').forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const productId = item.parentElement.getAttribute('data-id');
+
+                    if (productId){
+                        showProductDetail(parseInt(productId));
+                    } else {
+                        console.error('Không tìm thấy data-id cho sản phẩm này!');
+                    }
+                });
+            });
         }
     })
     .catch((error) => {

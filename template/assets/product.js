@@ -1,47 +1,48 @@
 // ====
-fetch('./product', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-})
-.then(response => response.json())
-.then(data => {
-    if (data.status==200) {
-        const productContainer = document.getElementById('product-container');
-        data.data.product.forEach(product => {
-            let productHTML =`
-                <div class="grid__column3" data-category="${product.category}" data-id="${product.id}">
-                    <a href="javascript:void(0)" class="home-product-item">
-                        <div class="product-img">   
-                            <img src="${product.thumbnail}" alt="${product.name}">
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-name">${product.name}</h3>
-                            <span class="product-prices">${product.price === 0 ? 'Hàng tặng' : product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
-                        </div>
-                    </a>
-                </div>
-            `;
-            productContainer.innerHTML += productHTML;
-        });
-        document.querySelectorAll('.home-product-item').forEach(item => {
-            item.addEventListener('click', (event) => {
-                event.preventDefault();
-                const productId = item.parentElement.getAttribute('data-id');
-
-                if (productId){
-                    showProductDetail(parseInt(productId));
-                } else {
-                    console.error('Không tìm thấy data-id cho sản phẩm này!');
-                }
+function showProduct() {
+    fetch('./product', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status==200) {
+            const productContainer = document.getElementById('product-container');
+            data.data.product.forEach(product => {
+                let productHTML =`
+                    <div class="grid__column3" data-category="${product.category}" data-id="${product.id}">
+                        <a href="javascript:void(0)" class="home-product-item">
+                            <div class="product-img">   
+                                <img src="${product.thumbnail}" alt="${product.name}">
+                            </div>
+                            <div class="product-info">
+                                <h3 class="product-name">${product.name}</h3>
+                                <span class="product-prices">${product.price === 0 ? 'Hàng tặng' : product.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                productContainer.innerHTML += productHTML;
             });
-        });
-    }
-})
-.catch(error => {
-});
+            document.querySelectorAll('.home-product-item').forEach(item => {
+                item.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    const productId = item.parentElement.getAttribute('data-id');
 
+                    if (productId){
+                        showProductDetail(parseInt(productId));
+                    } else {
+                        console.error('Không tìm thấy data-id cho sản phẩm này!');
+                    }
+                });
+            });
+        }
+    })
+    .catch(error => {
+    });
+}
 // ====
 function showProductDetail(productId) {
     fetch(`./product?id=${productId}`, {

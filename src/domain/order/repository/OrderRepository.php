@@ -5,8 +5,10 @@
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
 
-            $stmt = $conn->prepare("INSERT INTO orders (address, user_id) VALUES (?, ?)");
-            $stmt->bind_param("ss", $address, $userId);
+            $status = 0;
+
+            $stmt = $conn->prepare("INSERT INTO orders (address, status ,user_id) VALUES (?, ?, ?)");
+            $stmt->bind_param("sis", $address, $status, $userId);
             $stmt->execute();
 
             $orderId = $conn->insert_id;
@@ -16,6 +18,7 @@
                 $order = [
                     'id' => $orderId,
                     'address' => $address,
+                    'status' => $status,
                     'userid' => $userId
                 ];
             }
@@ -55,12 +58,14 @@
                         o.recipientname,
                         o.address,
                         o.phone,
+                        o.status,
                         o.user_id,
                         p.id AS product_id,
                         p.name AS product_name,
                         p.price,
                         p.description,
-                        p.category_id
+                        p.category_id,
+                        p.thumbnail
                     FROM orders o
                     JOIN orderDetail od ON o.id = od.order_id
                     JOIN products p ON od.product_id = p.id";
@@ -81,6 +86,7 @@
                             'recipientname' => $row['recipientname'],
                             'address' => $row['address'],
                             'phone' => $row['phone'],
+                            'status' => $row['status'],
                             'user_id' => $row['user_id'],
                             'products' => []
                         ];
@@ -91,7 +97,7 @@
                         'name' => $row['product_name'],
                         'price' => $row['price'],
                         'description' => $row['description'],
-                        'category_id' => $row['category_id']
+                        'thumbnail' => $row['thumbnail']
                     ];
                 }
             }
@@ -122,6 +128,32 @@
             $conn->close();
 
             return $oder;
+        }
+        public function orderFindId($id){
+            $mysql = new configMysqli();
+            $conn = $mysql->connectDatabase();
+
+            $stmt = $conn->prepare("SELECT * FROM orders WHERE id =?");
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            
+            $order = null;
+            if ($stmt->affected_rows > 0) {
+                $row = $result->fetch_assoc();
+                $order = [
+                    'id' => $id,
+                    'recipientname' => $row['recipientname'],
+                    'address' => $row['address'],
+                    'phone' => $row['phone'],
+                ];
+            }
+
+            $stmt->close(); 
+            $conn->close();
+            
+            return $order;
         }
     }
 ?>

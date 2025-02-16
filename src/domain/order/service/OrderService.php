@@ -19,5 +19,8 @@
         public function oderUpdate($id,$address){
             return $this->oderRepository->oderUpdate($id,$address);
         }
+        public function orderFindId($id){
+            return $this ->oderRepository->orderFindId($id);
+        }
     }
 ?>

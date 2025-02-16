@@ -62,7 +62,6 @@
                 <div class="row grid_app">
                     <div class="grid__column">
                         <div class="tilte-product">
-                            <h1 class="title">✨Tất cả sản phẩm</h1>
                         </div>
                         <div class="home-product">
                             <div class="row" id="product-container">
@@ -202,7 +201,6 @@
                                 </div>
                                 <div class="order-history-control">
                                     <div class="order-history-status">
-                                        <span class="order-history-status-sp no-complete">Đang xử lý</span>
                                         <button id="order-history-detail" onclick="showOrderDetail('${order.id}')"><i class="fa-regular fa-eye"></i> Xem chi tiết</button>
                                     </div>
                                     <div class="order-history-total">
@@ -212,6 +210,39 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- detail order -->
+        <div class="detail_order">
+            <div class="overlay">
+                <div class="order_body">
+                    <i class="fa-solid fa-xmark" aria-hidden="true" onclick="closeProductDetail()"></i>
+                    <h3 class="tittle_order">Thông tin đơn hàng</h3>
+                    <div class="detail-order-content">
+                        <ul class="detail-order-group">
+                            <li class="detail-order-item">
+                                <span class="detail-order-item-left"><i class="fa-solid fa-calendar-days"></i> Ngày đặt hàng</span>
+                                <span class="detail-order-item-right">27/11/2024</span>
+                            </li>
+                            <li class="detail-order-item">
+                                <span class="detail-order-item-left"><i class="fa-solid fa-calculator"></i> Hình thức thanh toán</span>
+                                <span class="detail-order-item-right">Thanh toán bằng zalopay</span>
+                            </li>
+                            <li class="detail-order-item">
+                                <span class="detail-order-item-left"><i class="fa-solid fa-location-dot"></i> Địa điểm nhận</span>
+                                <span class="detail-order-item-right">ădwa</span>
+                            </li class="detail-order-item">
+                            <li class="detail-order-item">
+                                <span class="detail-order-item-left"><i class="fa-solid fa-person"></i> Người nhận</span>
+                                <span class="detail-order-item-right">nhd</span>
+                            </li>
+                            <li class="detail-order-item">
+                                <span class="detail-order-item-left"><i class="fa-solid fa-phone"></i> Số điện thoại nhận</span>
+                                <span class="detail-order-item-right">0982870931</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -229,6 +260,7 @@
     document.getElementById('add-to-cart').addEventListener('click', function() {
         themgiohang();
     });
+    showProduct();
     </script>
 
     <!-- awesome font -->
