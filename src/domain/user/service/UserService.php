@@ -19,9 +19,9 @@
         public function userFindOne($id){
             return $this ->userRepository->findUserById($id);
         }
-        public function userUpdate($address ,$gender ,$status){
+        public function userUpdate($address ){
             $userId = UserUtil::getIdUser();
-            return $this->userRepository->userUpdate($userId,$address ,$gender ,$status);
+            return $this->userRepository->userUpdate($userId,$address);
         }
         public function userDelete($id){
             $user = $this ->userRepository->findUserById($id);

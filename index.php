@@ -107,5 +107,10 @@
         $product_ids = $data['product_ids'] ??'';
         $orderDetailController->orderCreate($product_ids,$idOrder);
     }
-
+    //user
+    if ($requestUri === '/user' && $method === 'POST') {
+        $data = json_decode(file_get_contents("php://input"), true);
+        $address = $data['newAddress'] ?? '';
+        $userController->userUpdate($address );
+    }
 ?>

@@ -28,8 +28,8 @@
             $user = $this ->userService->userFindOne($id);
             ApiResponse::success(["user" =>$user]);
         }
-        public function userUpdate($address ,$gender ,$status){
-            $user = $this->userService->userUpdate($address ,$gender ,$status);
+        public function userUpdate($address ){
+            $user = $this->userService->userUpdate($address );
             ApiResponse::success(["user" =>$user]);
         }
         public function userDelete($id){

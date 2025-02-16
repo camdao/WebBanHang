@@ -55,3 +55,28 @@ function infoUser(){
 
     
 }
+
+function changeInformation() {
+    const newName = document.getElementById("infoname").value.trim();
+    const newAddress = document.getElementById("infoaddress").value.trim();
+
+    fetch('./user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            newName: newName,
+            newAddress: newAddress,
+        }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status==200) {
+            alert("Thông tin tài khoản đã được cập nhật!");
+        }
+    })
+    .catch(error => {
+    }); 
+    
+}

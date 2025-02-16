@@ -61,16 +61,16 @@
             return $user;
 
         }
-        public function userUpdate($id,$address ,$gender ,$status){
+        public function userUpdate($id,$address){
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
         
             $sql = "UPDATE users 
-                    SET address = ?, gender = ?, status = ?
+                    SET address = ?
                     WHERE id = ?";
             
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssii", $address, $gender, $status,$id);
+            $stmt->bind_param("si", $address,$id);
         
             $stmt->execute();
             $user = null;
@@ -78,8 +78,6 @@
                 $user = [
                     'id' => $id,
                     'address' => $address,
-                    'gender' => $gender,
-                    'status' => $status,
                 ];
             }
 
