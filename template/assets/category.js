@@ -23,8 +23,8 @@ function loadCategory(){
     });
 }
 
-function filterProducts(categoryId) {
-    fetch(`./product?category=${categoryId}`, {
+function filterProducts(categoryId,page=1) {
+    fetch(`./product?category=${categoryId}&page=${page}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",

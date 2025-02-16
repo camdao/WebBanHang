@@ -1,6 +1,6 @@
 // ====
-function showProduct() {
-    fetch('./product', {
+function showProduct(page=1) {
+    fetch(`./product?page=${page}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -10,6 +10,7 @@ function showProduct() {
     .then(data => {
         if (data.status==200) {
             const productContainer = document.getElementById('product-container');
+            productContainer.innerHTML='';
             data.data.product.forEach(product => {
                 let productHTML =`
                     <div class="grid__column3" data-category="${product.category}" data-id="${product.id}">
@@ -38,6 +39,8 @@ function showProduct() {
                     }
                 });
             });
+
+           
         }
     })
     .catch(error => {

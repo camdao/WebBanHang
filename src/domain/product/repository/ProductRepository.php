@@ -1,37 +1,36 @@
 <?php
     class ProductRepository{
-        public function productFindAll(){
+        public function productFindAll($page){
+            $perPage = 6;
+            $offset = ($page - 1) * $perPage;
+
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
 
-            $sql = "SELECT p.id, p.name,p.thumbnail, p.price, p.description, c.name AS category
+            $sql = "SELECT p.id, p.name, p.thumbnail, p.price, p.description
             FROM products p
-            LEFT JOIN categories c ON p.category_id = c.id";
-
+            LIMIT ? OFFSET ?";
+            
             $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ii', $perPage, $offset);
             $stmt->execute();
 
             $result = $stmt->get_result();
             $products = [];
             while ($row = $result->fetch_assoc()) {
-                $productId = $row['id'];
-                
-                if (!isset($products[$productId])) {
-                    $products[$productId] = [
-                        'id' => $row['id'],
-                        'name' => $row['name'],
-                        'thumbnail' => $row['thumbnail'],
-                        'price' => $row['price'],
-                        'description' => $row['description'],
-                        'images' => []
-                    ];
-                }
+                $products[] = [
+                    'id' => $row['id'],
+                    'name' => $row['name'],
+                    'thumbnail' => $row['thumbnail'],
+                    'price' => $row['price'],
+                    'description' => $row['description'],
+                ];
             }
 
             $stmt->close();
             $conn->close();
 
-            return array_values($products); 
+            return $products; 
         }
         public function productFindOne($id){
             $mysql = new configMysqli();
@@ -150,13 +149,17 @@
 
             return $product;
         }
-        public function productFindByCategory($idCategory){
+        public function productFindByCategory($idCategory,$page){
+            $perPage = 6;
+            $offset = ($page - 1) * $perPage;
+
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
 
-            $sql = "SELECT * FROM products WHERE category_id = ?";
+            $sql = "SELECT * FROM products WHERE category_id = ?
+            LIMIT ? OFFSET ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param("i", $idCategory);
+            $stmt->bind_param("iii", $idCategory,$perPage, $offset);
             $stmt->execute();
             $result = $stmt->get_result();
 

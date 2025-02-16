@@ -65,12 +65,14 @@
     if ($requestUri === '/product' && $method === 'GET') {
         if (isset($_GET['category'])) {
             $categoryId = $_GET['category'];
-            $productController->productFindByCategory($categoryId);
+            $page = $_GET['page']; 
+            $productController->productFindByCategory($categoryId,$page);
         } elseif(isset($_GET['id'])){
             $productId = $_GET['id'];
             $productController->productFindOne($productId);
         }else{
-            $productController->productFindAll();
+            $page = $_GET['page'];     
+            $productController->productFindAll($page);
         }
     }
     //Category

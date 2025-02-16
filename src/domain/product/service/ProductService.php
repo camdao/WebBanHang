@@ -9,8 +9,8 @@
         {
             $this->productRepository = ProductRepositoryFactory::createProductRepository();
         }
-        public function productFindAll(){
-            return $this->productRepository ->productFindAll();
+        public function productFindAll($page){
+            return $this->productRepository ->productFindAll($page);
         }
         public function productFindOne($id){
             return $this ->productRepository->productFindOne($id);
@@ -37,8 +37,8 @@
             }
             return $product;
         }
-        public function productFindByCategory($idCategory){
-            $product = $this->productRepository->productFindByCategory($idCategory);
+        public function productFindByCategory($idCategory,$page){
+            $product = $this->productRepository->productFindByCategory($idCategory,$page);
             return $product;
         }
     }

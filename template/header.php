@@ -144,7 +144,19 @@
     if (target.classList.contains("category-link")) {
         event.preventDefault();
         let categoryId = target.dataset.category;
+        let pageElement = document.querySelector('.page-note.current');
+        pageElement.innerText = 1;
+        let oldElement = document.getElementById('Next');
+        let newElement = oldElement.cloneNode(true);
+        oldElement.parentNode.replaceChild(newElement, oldElement); 
         filterProducts(categoryId);
+        document.getElementById('Next').addEventListener('click', function() {
+            let pageElement = document.querySelector('.page-note.current');
+            let page = parseInt(pageElement.innerText, 10) || 1;
+            page += 1;
+            pageElement.innerText = page; 
+            filterProducts(categoryId,page);
+        });
     }
     });
 

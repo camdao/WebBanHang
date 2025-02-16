@@ -74,9 +74,6 @@
                             <li class="pagination-item">
                                 <a href="#" class="page-note current">1</a>
                             </li>
-                            <li class="pagination-item">
-                                <a href="#" class="page-note">2</a>
-                            </li>
                             <li class="buttonNext" id="Next">
                                 <a href="#" class="page-button"><i class="fa-solid fa-arrow-right-long"></i></a>
                             </li>
@@ -261,6 +258,13 @@
         themgiohang();
     });
     showProduct();
+    document.getElementById('Next').addEventListener('click', function() {
+        let pageElement = document.querySelector('.page-note.current');
+        let page = parseInt(pageElement.innerText, 10) || 1;
+        page += 1;
+        pageElement.innerText = page; 
+        showProduct(page);
+    });
     </script>
 
     <!-- awesome font -->

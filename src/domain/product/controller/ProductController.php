@@ -7,8 +7,8 @@
         {
             $this->productService = ProductServiceFactory::createProductService();
         }
-        public function productFindAll(){
-            $product = $this ->productService->productFindAll();
+        public function productFindAll($page){
+            $product = $this ->productService->productFindAll($page);
             ApiResponse::success(["product" =>$product]);
         }
         public function productFindOne($id){
@@ -27,8 +27,8 @@
             $product = $this->productService->productUpdate($id,$name ,$thumbnail ,$price ,$description ,$category_id);
             ApiResponse::success(["product" =>$product]);
         }
-        public function productFindByCategory($idCategory){
-            $product = $this->productService->productFindByCategory($idCategory);
+        public function productFindByCategory($idCategory,$page){
+            $product = $this->productService->productFindByCategory($idCategory,$page);
             ApiResponse::success(["product" =>$product]);
         }
     }
