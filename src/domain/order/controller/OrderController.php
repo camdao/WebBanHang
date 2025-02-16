@@ -7,8 +7,8 @@
         {
             $this ->OrderService = OrderServiceFactory::createOrderService();
         }
-        public function orderCreate($address){
-            $order = $this ->OrderService->createOrder($address);
+        public function orderCreate($address,$name,$tele){
+            $order = $this ->OrderService->createOrder($address,$name,$tele);
             ApiResponse::success(["order" =>$order]);
         }
         public function orderDelete($id){

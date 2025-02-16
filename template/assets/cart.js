@@ -135,6 +135,8 @@ function thanhtoan(){
     let orderdetail = JSON.parse(localStorage.getItem("giohang")) || [];
     let product_ids = orderdetail.map(item => item.id);
     let address = document.getElementById('address').value;
+    let name = document.getElementById('name').value;
+    let tele = document.getElementById('tele').value;
 
     fetch('./order', {
         method: 'POST',
@@ -143,6 +145,8 @@ function thanhtoan(){
         },
         body: JSON.stringify({
             address: address,
+            name: name,
+            tele: tele,
         }),
     })
     .then(response => response.json())

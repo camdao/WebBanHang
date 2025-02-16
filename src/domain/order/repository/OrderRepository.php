@@ -1,14 +1,14 @@
 <?php
     class OrderRepository{
 
-        public function save($address, $userId){
+        public function save($address,$name,$tele, $userId){
             $mysql = new configMysqli();
             $conn = $mysql->connectDatabase();
 
             $status = 0;
 
-            $stmt = $conn->prepare("INSERT INTO orders (address, status ,user_id) VALUES (?, ?, ?)");
-            $stmt->bind_param("sis", $address, $status, $userId);
+            $stmt = $conn->prepare("INSERT INTO orders (address,recipientname,phone, status ,user_id) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssiis", $address,$name,$tele, $status, $userId);
             $stmt->execute();
 
             $orderId = $conn->insert_id;

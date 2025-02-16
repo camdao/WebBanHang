@@ -82,7 +82,9 @@
     if ($requestUri === '/order' && $method === 'POST') {
         $data = json_decode(file_get_contents("php://input"), true);
         $address = $data['address'] ?? '';
-        $orderController->orderCreate($address);
+        $name = $data['name'] ?? '';
+        $tele = $data['tele'] ?? '';
+        $orderController->orderCreate($address,$name,$tele);
     }
 
     if ($requestUri === '/order' && $method === 'GET') {

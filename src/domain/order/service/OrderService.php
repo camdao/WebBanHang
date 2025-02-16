@@ -6,9 +6,9 @@
         {
             $this ->oderRepository = OrderRepositoryFactory::createOrderRepository();
         }
-        public function createOrder($address){
+        public function createOrder($address,$name,$tele){
             $userId = UserUtil::getIdUser();
-            return $this ->oderRepository->save($address, $userId);
+            return $this ->oderRepository->save($address,$name,$tele, $userId);
         }
         public function deleteOrder($id){
             return $this ->oderRepository->delete($id);
